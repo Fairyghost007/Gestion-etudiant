@@ -9,8 +9,8 @@
       require_once("../views/partials/left.sidebar.html.php");
       $selectedFilter = isset($_REQUEST['etat']) ? $_REQUEST['etat'] : 'Select Etat';
       $selectedFilterac = isset($_REQUEST['matricule']) ? $_REQUEST['matricule'] : 'allmatricule';
-      $selectedFiltermod = isset($_REQUEST['module']) ? $_REQUEST['module'] : 'Select module';
-      $selectedFilternp = isset($_REQUEST['nom_prenom']) ? $_REQUEST['nom_prenom'] : 'Select np';
+      $selectedFiltermod = isset($_REQUEST['module']) ? $_REQUEST['module'] : '0';
+      $selectedFilternp = isset($_REQUEST['nom_prenom']) ? $_REQUEST['nom_prenom'] : '0';
       $nbrOfElementByPage=5;
       if($_REQUEST["page"]=="add_demande") {
          require_once("../views/add.demande.html.php");
@@ -44,7 +44,7 @@
          $nbrOfDemandesac=nbrOfALLDemandeByMatricule($_SESSION["anneEncours"]["id"]);
          $nbrOfPageac= ceil($nbrOfDemandesac/5);
          $pageNumber = 1;
-         if(isset($_REQUEST["liste"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste"], $matches)) {
+         if(isset($_REQUEST["liste_ac"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste_ac"], $matches)) {
                $pageNumber = max(1, (int)$matches[1]);
          }
          $start = ($pageNumber - 1) * $nbrOfElementByPage;
@@ -56,7 +56,7 @@
          $nbrOfclass=nbrOfClassesByProf2();
          $nbrOfPageclass= ceil($nbrOfclass/5);
          $pageNumber = 1;
-         if(isset($_REQUEST["liste"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste"], $matches)) {
+         if(isset($_REQUEST["liste_classe"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste_classe"], $matches)) {
             $pageNumber = max(1, (int)$matches[1]);
          }
          $start = ($pageNumber - 1) * $nbrOfElementByPage;
@@ -67,7 +67,7 @@
          $nbrOfProf=nbrOfProfsByModule();
          $nbrOfPagemod= ceil($nbrOfProf/5);
          $pageNumber = 1;
-         if(isset($_REQUEST["liste"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste"])) {
+         if(isset($_REQUEST["liste_prof"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste_prof"])) {
             $pageNumber = max(1, (int)$matches[1]);
          }
          $start = ($pageNumber - 1) * $nbrOfElementByPage;
@@ -135,29 +135,30 @@
          $start = ($pageNumber - 1) * $nbrOfElementByPage;
          $demandes = getFiveDemandeac($_SESSION["anneEncours"]["id"], $start, $nbrOfElementByPage, $matricule);
          require_once("../views/liste.ac.html.php");
-      }elseif($_REQUEST["page"]=="form-filtre-module"){
-         $modules=allModules();
-         $module=$_REQUEST['module'];
-         $nbrOfProf=nbrOfProfsByModule($module);
-         $nbrOfPagemod= ceil($nbrOfProf/5);
+      }elseif ($_REQUEST["page"] == "form-filtre-module") {
+         $module = $_REQUEST['module'];
+         $nbrOfProf = nbrOfProfsByModule($module);
+         $nbrOfPagemod = ceil($nbrOfProf / 5);
          $pageNumber = 1;
-         if(isset($_REQUEST["liste"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste"], $matches)) {
-            $pageNumber = max(1, (int)$matches[1]);
+         if (isset($_REQUEST["liste"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste"], $matches)) {
+             $pageNumber = max(1, (int)$matches[1]);
          }
          $start = ($pageNumber - 1) * $nbrOfElementByPage;
-         $profs = getFiveProfs( $start, $nbrOfElementByPage, $module);
+         $profs = getFiveProfs($start, $nbrOfElementByPage, $module);
          require_once("../views/liste.prof.html.php");
-      }elseif($_REQUEST["page"]=="form-filtre-nom-prenom"){
-         $classes=allclasse();
-         $nom_prrenom=$_REQUEST['nom_prenom'];
-         $nbrOfclass=nbrOfClassesByProf2($nom_prrenom);
+     }elseif($_REQUEST["page"]=="form-filtre-nom-prenom"){
+         $nom_prenom=$_REQUEST['nom_prenom'];
+         var_dump($nom_prenom);
+         $nbrOfclass=nbrOfClassesByProf2($nom_prenom);
+         var_dump($nbrOfclass);
          $nbrOfPageclass= ceil($nbrOfclass/5);
          $pageNumber = 1;
          if(isset($_REQUEST["liste"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste"], $matches)) {
             $pageNumber = max(1, (int)$matches[1]);
          }
          $start = ($pageNumber - 1) * $nbrOfElementByPage;
-         $classes = getFiveClasses2( $start, $nbrOfElementByPage, $nom_prrenom);
+         $classes = getFiveClasses2( $start, $nbrOfElementByPage, $nom_prenom);
+         var_dump($classes);
          require_once("../views/liste.classe.html.php");
       }elseif($_REQUEST["page"]=="form-add-demande"){
          $newDemande=[

@@ -14,9 +14,9 @@
           <div>
               <label for="module">Modules</label>
               <select name="module" id="module">
-                <option value="0" <?= ($selectedFiltermod === 'Select module') ? 'selected' : '' ?>>Select module</option>
+                <option value="0" <?= ($selectedFiltermod === "0") ? 'selected' : '' ?>>Select module</option>
                 <?php foreach($modules as $module):?>
-                    <option value="<?=$module["id"] ?>" <?= ($selectedFiltermod === $module["libelle"]) ? 'selected' : '' ?>><?=$module["libelle"] ?></option>
+                    <option value="<?=$module["id"] ?>" <?= ($selectedFiltermod === strval($module["id"])) ? 'selected' : '' ?>><?=$module["libelle"] ?></option>
                 <?php endforeach;?>
               </select>
               <button type="submit" name="page" value="form-filtre-module">OK</button>
@@ -59,10 +59,10 @@
           <?php
           for($i=1;$i<=$nbrOfPagemod;$i++){
             if($pageNumber!=$i){
-              echo"<a  href='http://localhost:8000?page=liste_prof&liste=liste$i'>$i</a>";
+              echo"<a  href='http://localhost:8000?page=liste_prof&liste_prof=liste$i'>$i</a>";
 
             }else{
-              echo "<a class='active' href='http://localhost:8000?page=liste_prof&liste=liste$i'>$i</a>";
+              echo "<a class='active' href='http://localhost:8000?page=liste_prof&liste_prof=liste$i'>$i</a>";
             }
           }
           ?>

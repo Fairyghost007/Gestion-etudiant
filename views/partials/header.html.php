@@ -9,7 +9,7 @@
   <header>
     <div class="menu">
         <div class="space">
-          <?php if ($_REQUEST["page"] == "liste_classe"||$_REQUEST["page"] == "liste_prof"||$_REQUEST["page"] == "detail_prof"): ?>
+          <?php if ($_SESSION['userConnect']['role'] == "ROLE_RP"): ?>
             <a href="<?=webRoot?>?page=liste_classe">Classes</a>
             <a href="<?=webRoot?>?page=liste_prof">Professeurs</a>
           <?php endif; ?>

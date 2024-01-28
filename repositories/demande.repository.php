@@ -211,23 +211,27 @@ function getFiveProfs(int $start = 0, int $nbrOfElementByPage = 5, string $modul
 
    return $demandesSubset;
 }
-function getFiveClasses2(int $start = 0, int $nbrOfElementByPage = 5, string $nom_prrenom="0"):array|null{
+function getFiveClasses2(int $start = 0, int $nbrOfElementByPage = 5, string $nom_prenom = "0"): array|null {
    $profs = allprof2();
-   $classes=allclasse();
+   $classes = allclasse();
    $demandesSubset = [];
-   if($nom_prrenom==="0"){
-      foreach($classes as $classe){
-         $demandesSubset[]=$classe;
-      }
+   $classeIDs = [];
+   if ($nom_prenom === "0") {
+       $demandesSubset = $classes;
    }else{
-         foreach($profs as $prof){
-            if($prof["id"] === $nom_prrenom){
-               $demandesSubset[]=$prof['classes'];
-            }
+      foreach ($profs as $prof) {
+         if ($prof['id'] == $nom_prenom) {
+            $classeIDs = $prof['classesIds'];
          }
+      }
+      foreach ($classes as $classe) {
+         if (in_array($classe["id"], $classeIDs)) { 
+            $demandesSubset[] = $classe;
+         }
+      }
    }
-   $demandesSubset = array_slice($demandesSubset, $start, $nbrOfElementByPage);
 
+   $demandesSubset = array_slice($demandesSubset, $start, $nbrOfElementByPage);
    return $demandesSubset;
 }
 
@@ -259,9 +263,6 @@ function getModuleById(int $id):array|null{
    $modules = allModules();
    return  getDataById($modules,$id);
 };
-// function getclassebyprofid(int $id){
-//    $classes=allclasse();
-// }
 
 function getLastId(array $data){
    $i=1;
@@ -347,7 +348,7 @@ function nbrOfClassesByProf(int $id):int{
    $profs=allprof2();
    $cpt=0;
    foreach($profs as $prof){
-      if($prof['id']===$id){
+      if($prof['id']==$id){
          $classeIds=$prof['classesIds'];  
       }
    }
@@ -360,22 +361,13 @@ function nbrOfClassesByProf2(string $nom_prrenom="0"):int{
    $profs=allprof2();
    $classes=allclasse();
    $cpt=0;
-   $classeIds=[];
-   if($nom_prrenom==="0"){
-      foreach($classes as $classe){
+   foreach($classes as $classe){
+      if($nom_prrenom==="0"){
          $cpt++;
-      }
-   }else{
-      foreach($profs as $prof){
-         if($prof['id']===$nom_prrenom){
-            $classeIds[]=$prof['classesIds'];  
-         }
-      }
-      foreach($classeIds as $classeId){
-         $cpt++;
+      }else{
+        return nbrOfClassesByProf($nom_prrenom);
       }
    }
-   
    return $cpt;
 };
 function convertArrayElementsToInt($array) {

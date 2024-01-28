@@ -12,7 +12,13 @@
 <body>
   <div class="sidebar">
   <div class="logo">
-    <a href="">Demandes</a>
+  <?php if ($_SESSION['userConnect']['role'] == "ROLE_ETUDIANT"): ?>
+    <a href="<?=webRoot?>?page=liste"><strong>#Digital Institute</strong></a>
+  <?php elseif ($_SESSION['userConnect']['role'] == "ROLE_AC"): ?>
+    <a href="<?=webRoot?>?page=liste_ac"><strong>#Digital Institute</strong></a>
+  <?php elseif ($_SESSION['userConnect']['role'] == "ROLE_RP"): ?>
+    <a href="<?=webRoot?>?page=liste_classe">#Digital Institute</a>
+  <?php endif; ?>
   </div>
     <div class="info">
       <p>Name: <span id="nameField"> <?=$_SESSION['userConnect']['nom']?> </span></p>
@@ -21,7 +27,6 @@
       <?php if ($_SESSION['userConnect']['role'] == "ROLE_ETUDIANT"): ?>
         <p>Class: <span id="classField"><?=$_SESSION['userConnect']['libelle']?> </span></p>
       <?php endif; ?>
-      
     </div>
   </div>
 </body>

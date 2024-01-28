@@ -10,13 +10,13 @@
 <body>
   <div class="big-container">
       <div class="container_box">
-      <form action="<?=webRoot?>?page=liste_classe" method="POST">
+      <form action="<?=webRoot?>" method="POST">
           <div>
               <label for="nom_prenom">Nom&Prenom</label>
               <select name="nom_prenom" id="nom_prenom">
-                <option value="0" <?= ($selectedFilternp === 'Select np') ? 'selected' : '' ?>>Select nom&prenom</option>
+                <option value="0" <?= ($selectedFilternp === '0') ? 'selected' : '' ?>>Select nom&prenom</option>
                 <?php foreach($profs as $prof):?>
-                    <option value="<?=$prof["id"]?>" <?= ($selectedFilternp === $prof["nom"].$prof["prenom"]) ? 'selected' : '' ?>><?=$prof["nom"]. " " .$prof["prenom"] ?></option>
+                    <option value="<?=$prof["id"]?>" <?= ($selectedFilternp === $prof["id"]) ? 'selected' : '' ?>><?=$prof["nom"]. " " .$prof["prenom"] ?></option>
                 <?php endforeach;?>
               </select>
               <button type="submit" name="page" value="form-filtre-nom-prenom">OK</button>
@@ -51,12 +51,12 @@
       <?php if ($nbrOfPageclass > 1):?>
       <div class="pagination">
           <?php
-          for($i=1;$i<=$nbrOfPage;$i++){
+          for($i=1;$i<=$nbrOfPageclass;$i++){
             if($pageNumber!=$i){
-              echo"<a  href='http://localhost:8000?page=liste_classe&liste=liste$i'>$i</a>";
+              echo"<a  href='http://localhost:8000?page=liste_classe&liste_classe=liste$i'>$i</a>";
 
             }else{
-              echo "<a class='active' href='http://localhost:8000?page=liste_classe&liste=liste$i'>$i</a>";
+              echo "<a class='active' href='http://localhost:8000?page=liste_classe&liste_classe=liste$i'>$i</a>";
             }
           }
           ?>
