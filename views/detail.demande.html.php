@@ -48,6 +48,10 @@
                     <a id="a1" href="http://localhost:8000?page=liste_ac">Rejeter</a>
                     <a  href="http://localhost:8000?page=liste_ac">Accepter</a>
                 </div>
+            <?php elseif ($_SESSION['userConnect']['role'] == "ROLE_ETUDIANT"): ?>
+                <div class="btnField">
+                    <a  href="http://localhost:8000?page=liste">OK</a>
+                </div>
             <?php endif; ?>
             
         </div>

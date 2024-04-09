@@ -59,10 +59,10 @@
           <?php
           for($i=1;$i<=$nbrOfPagemod;$i++){
             if($pageNumber!=$i){
-              echo"<a  href='http://localhost:8000?page=liste_prof&liste_prof=liste$i'>$i</a>";
+              echo"<a  href='http://localhost:8000?page=liste_prof&liste_prof=$i'>$i</a>";
 
             }else{
-              echo "<a class='active' href='http://localhost:8000?page=liste_prof&liste_prof=liste$i'>$i</a>";
+              echo "<a class='active' href='http://localhost:8000?page=liste_prof&liste_prof=$i'>$i</a>";
             }
           }
           ?>

@@ -57,10 +57,10 @@
             <?php
             for($i=1;$i<=$nbrOfPageac;$i++){
                 if($pageNumber!=$i){
-                echo"<a  href='http://localhost:8000?page=liste_ac&liste_ac=liste$i'>$i</a>";
+                echo"<a  href='http://localhost:8000?page=liste_ac&liste_ac=$i'>$i</a>";
 
                 }else{
-                echo "<a class='active' href='http://localhost:8000?page=liste_ac&liste_ac=liste$i'>$i</a>";
+                echo "<a class='active' href='http://localhost:8000?page=liste_ac&liste_ac=$i'>$i</a>";
                 }
             }
             ?>

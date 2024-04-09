@@ -34,8 +34,8 @@
          $nbrOfDemandes=nbrOfDemandeByEtat($_SESSION["userConnect"]["id"],$_SESSION["anneEncours"]["id"]);
          $nbrOfPage= ceil($nbrOfDemandes/5);
          $pageNumber = 1;
-         if(isset($_REQUEST["liste"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste"], $matches)) {
-               $pageNumber = max(1, (int)$matches[1]);
+         if(isset($_REQUEST["liste"]) && is_numeric($_REQUEST["liste"])) {
+               $pageNumber = max(1, (int)$_REQUEST["liste"]);
          }
          $start = ($pageNumber - 1) * $nbrOfElementByPage;
          $demandes = getFiveDemande( $_SESSION["userConnect"]["id"], $_SESSION["anneEncours"]["id"], $start, $nbrOfElementByPage);
@@ -44,8 +44,8 @@
          $nbrOfDemandesac=nbrOfALLDemandeByMatricule($_SESSION["anneEncours"]["id"]);
          $nbrOfPageac= ceil($nbrOfDemandesac/5);
          $pageNumber = 1;
-         if(isset($_REQUEST["liste_ac"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste_ac"], $matches)) {
-               $pageNumber = max(1, (int)$matches[1]);
+         if(isset($_REQUEST["liste_ac"]) && is_numeric($_REQUEST["liste_ac"])) {
+               $pageNumber = max(1, (int)$_REQUEST["liste_ac"]);
          }
          $start = ($pageNumber - 1) * $nbrOfElementByPage;
          $demandes = getFiveDemandeac( $_SESSION["anneEncours"]["id"], $start, $nbrOfElementByPage);
@@ -56,8 +56,8 @@
          $nbrOfclass=nbrOfClassesByProf2();
          $nbrOfPageclass= ceil($nbrOfclass/5);
          $pageNumber = 1;
-         if(isset($_REQUEST["liste_classe"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste_classe"], $matches)) {
-            $pageNumber = max(1, (int)$matches[1]);
+         if(isset($_REQUEST["liste_classe"]) && is_numeric($_REQUEST["liste_classe"])) {
+            $pageNumber = max(1, (int)$_REQUEST["liste_classe"]);
          }
          $start = ($pageNumber - 1) * $nbrOfElementByPage;
          $classes = getFiveClasses2( $start, $nbrOfElementByPage);
@@ -67,8 +67,8 @@
          $nbrOfProf=nbrOfProfsByModule();
          $nbrOfPagemod= ceil($nbrOfProf/5);
          $pageNumber = 1;
-         if(isset($_REQUEST["liste_prof"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste_prof"])) {
-            $pageNumber = max(1, (int)$matches[1]);
+         if(isset($_REQUEST["liste_prof"]) && is_numeric($_REQUEST["liste_prof"])) {
+            $pageNumber = max(1, (int)$_REQUEST["liste_prof"]);
          }
          $start = ($pageNumber - 1) * $nbrOfElementByPage;
          $profs = getFiveProfs( $start, $nbrOfElementByPage);
@@ -118,8 +118,8 @@
          $nbrOfDemandes=nbrOfDemandeByEtat($_SESSION["userConnect"]["id"],$_SESSION["anneEncours"]["id"],$etat);
          $nbrOfPage= ceil($nbrOfDemandes/5);
          $pageNumber = 1;
-         if(isset($_REQUEST["liste"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste"], $matches)) {
-               $pageNumber = max(1, (int)$matches[1]);
+         if(isset($_REQUEST["liste"]) && is_numeric($_REQUEST["liste"])) {
+            $pageNumber = max(1, (int)$_REQUEST["liste"]);
          }
          $start = ($pageNumber - 1) * $nbrOfElementByPage;
          $demandes = getFiveDemande($_SESSION["userConnect"]["id"],$_SESSION["anneEncours"]["id"], $start, $nbrOfElementByPage, $etat);
@@ -129,8 +129,8 @@
          $nbrOfDemandesac=nbrOfALLDemandeByMatricule($_SESSION["anneEncours"]["id"],$matricule);
          $nbrOfPageac= ceil($nbrOfDemandesac/5);
          $pageNumber = 1;
-         if(isset($_REQUEST["liste"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste"], $matches)) {
-            $pageNumber = max(1, (int)$matches[1]);
+         if(isset($_REQUEST["liste_ac"]) && is_numeric($_REQUEST["liste_ac"])) {
+            $pageNumber = max(1, (int)$_REQUEST["liste_ac"]);
          }
          $start = ($pageNumber - 1) * $nbrOfElementByPage;
          $demandes = getFiveDemandeac($_SESSION["anneEncours"]["id"], $start, $nbrOfElementByPage, $matricule);
@@ -140,11 +140,12 @@
          $nbrOfProf = nbrOfProfsByModule($module);
          $nbrOfPagemod = ceil($nbrOfProf / 5);
          $pageNumber = 1;
-         if (isset($_REQUEST["liste"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste"], $matches)) {
-             $pageNumber = max(1, (int)$matches[1]);
+         if(isset($_REQUEST["liste_prof"]) && is_numeric($_REQUEST["liste_prof"])) {
+            $pageNumber = max(1, (int)$_REQUEST["liste_prof"]);
          }
          $start = ($pageNumber - 1) * $nbrOfElementByPage;
          $profs = getFiveProfs($start, $nbrOfElementByPage, $module);
+         $modules=allModules();
          require_once("../views/liste.prof.html.php");
      }elseif($_REQUEST["page"]=="form-filtre-nom-prenom"){
          $nom_prenom=$_REQUEST['nom_prenom'];
@@ -153,12 +154,12 @@
          var_dump($nbrOfclass);
          $nbrOfPageclass= ceil($nbrOfclass/5);
          $pageNumber = 1;
-         if(isset($_REQUEST["liste"]) && preg_match("/^liste(\d+)$/", $_REQUEST["liste"], $matches)) {
-            $pageNumber = max(1, (int)$matches[1]);
+         if(isset($_REQUEST["liste_classe"]) && is_numeric($_REQUEST["liste_classe"])) {
+            $pageNumber = max(1, (int)$_REQUEST["liste_classe"]);
          }
          $start = ($pageNumber - 1) * $nbrOfElementByPage;
          $classes = getFiveClasses2( $start, $nbrOfElementByPage, $nom_prenom);
-         var_dump($classes);
+         $profs=allprof2();
          require_once("../views/liste.classe.html.php");
       }elseif($_REQUEST["page"]=="form-add-demande"){
          $newDemande=[
