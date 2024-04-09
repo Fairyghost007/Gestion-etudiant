@@ -13,6 +13,24 @@ The RP can attribuate the teacher classes and modules
 - RP can attribuate classes/modules
 - RP can add modules/teachears
 
+## Installation
+
+Install my-project with cmd or terminal
+
+```bash
+  cd projet
+  php -S localhost:8000 -t public
+```
+    
+## 🛠 Skills
+PHP, HTML, CSS...
+
+
+## Tech Stack
+
+**Client:** html, css
+
+**Server:** php
 
 
 # Hi, I'm Birane Ndiaye! 👋
