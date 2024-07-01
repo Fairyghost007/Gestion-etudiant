@@ -1,0 +1,245 @@
+*{
+  box-sizing: border-box;
+}
+body{
+    display: grid;
+    place-items: center;
+    height: 70vh;
+    font-size: 20px;
+    background:#E3E8EB
+}
+.big-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  /* border:2px solid black; */
+  margin-left:250px;
+  margin-top:250px;
+  width:82%;
+  padding:10px;
+  height:70%;
+  position:fixed;
+}
+.container_box{
+    width:750px;
+    padding:10px;
+    background:#425061;
+    border-radius:10px;
+    color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+    
+    
+}
+form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+    background:#435061;
+    border-radius:10px;
+    padding:10px
+}
+label{
+    margin-bottom: 10px;
+}
+select{
+    margin-bottom: 10px;
+}
+.button_field{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    width: 250px;
+}
+
+input[type=submit]{
+    cursor: pointer;
+    padding: 10px 5px;
+    border-radius: 3px;
+    border: 0;
+    width: 70px;
+}
+input[type=submit]:hover{
+    background-color:rgb(96, 95, 95);
+    color:rgb(255, 255, 255);
+    cursor: pointer;
+    padding: 10px 5px;
+    border-radius: 3px;
+    border: 0;
+    width: 70px;
+}
+select{
+    width:200px;
+    height:30px;
+    color:black;
+    border:0;
+    border-radius:5px;
+    padding:0px 10px;
+}
+.tableContainer{
+  border-radius: 100%;
+  background-color: white;
+}
+table{
+    border-collapse: collapse;
+    width: 1170px;
+    border-radius: 10px;
+    color:white;
+    border-radius: .4em;
+    position:fixed;
+    top:250px;
+    left:260px;
+
+    
+}
+
+thead tr{
+    background-color: #2C3845;
+    color: white;
+    text-align: center;
+    font-weight:bold;
+    font-size:25px;
+    
+}
+th, td{
+  padding: 15px 20px;
+  border-bottom: 1px solid #2C3845;
+  border-left: 1px solid #2C3845;
+}
+td{
+  text-align:center;
+  font-size:18px;
+  font-weight:light;
+}
+tbody tr td:last-child {
+  padding:0;
+  width:300px
+}
+tbody tr:nth-child(even) {
+  background-color:#2C3845;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #425061;
+}
+td a{
+  text-decoration: none;
+  cursor: pointer;
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: 0;
+  width: 100px;
+  background-color: rgb(217, 218, 219);
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+}
+/* a:hover{
+  background-color:#2C3845;
+  color:rgb(255, 255, 255);
+  cursor: pointer;
+  padding: 10px 5px;
+  border-radius: 3px;
+  border: 0;
+  width: 100px;
+} */
+
+td a:hover:nth-child(even){
+  background-color: #425061;
+  color:rgb(255, 255, 255);
+  cursor: pointer;
+  padding: 5px 15px;
+  border-radius: 3px;
+  border: 0;
+  width: 100px;
+}
+td a:hover:nth-child(odd){
+  background-color: #2C3845;
+  color:rgb(255, 255, 255);
+  cursor: pointer;
+  padding: 5px 15px;
+  border-radius: 3px;
+  width: 100px;
+}
+a{
+  text-decoration: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 0;
+  width: 100px;
+  background-color: rgb(0, 157, 255);
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  transition: 0.2s;
+}
+a:hover{
+  text-decoration: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 0;
+  width: 100px;
+  background-color: #ffffff;
+  color: #2C3845;
+  font-size: 16px;
+  transition: 0.3s;
+}
+button{
+  text-decoration: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 0;
+  width: 100px;
+  background-color: rgb(0, 157, 255);
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  transition: 0.2s;
+}
+button:hover{
+  text-decoration: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 0;
+  width: 100px;
+  background-color: #ffffff;
+  color: #2C3845;
+  font-size: 16px;
+  transition: 0.3s;
+}
+.pagination {
+  width: auto;
+  gap:5px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  margin-top: -300px;
+  /* background-color: rgb(0, 157, 255); */
+}
+
+.pagination a {
+  width: 45px;
+  color: black;
+  background-color:rgb(255, 255, 255);
+  text-align: center;
+  padding: 5px 5px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: rgb(0, 157, 255);
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
